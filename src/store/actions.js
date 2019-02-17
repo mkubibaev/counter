@@ -17,15 +17,24 @@ export const incrementCounter = () => {
 };
 
 export const decrementCounter = () => {
-    return {type: DECREMENT};
+	return dispatch => {
+		dispatch({type: DECREMENT});
+		dispatch(saveCounter());
+	}
 };
 
 export const addCounter = amount => {
-    return {type: ADD, amount};
+	return dispatch => {
+		dispatch({type: ADD, amount});
+		dispatch(saveCounter());
+	}
 };
 
 export const subtractCounter = amount => {
-    return {type: SUBTRACT, amount};
+	return dispatch => {
+		dispatch({type: SUBTRACT, amount});
+		dispatch(saveCounter());
+	}
 };
 
 export const fetchCounterRequest = () => {
@@ -50,6 +59,7 @@ export const fetchCounter = () => {
         });
     }
 };
+
 
 export const saveCounter = () => {
     return (dispatch, getState) => {
